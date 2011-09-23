@@ -19,8 +19,11 @@ module RSpec::Rails
     end
 
     context "as a user would use rspec-apotomo" do
+      # A real user wouldn't use WidgetExampleGroup because
+      # the rails rspec would include it automagically.
       include WidgetExampleGroup
 
+      # Tell Apotomo about our dummy widget
       has_widgets do |root|
         root << widget(:dummy)
       end
