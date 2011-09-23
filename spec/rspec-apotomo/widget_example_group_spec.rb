@@ -1,7 +1,10 @@
 require 'spec_helper'
 require 'rails/all' # TODO This probably should be someplace else
 require 'rspec/rails/example/widget_example_group'
-require 'apotomo'
+
+# This class is used as a dummy widget for testing
+class DummyWidget < Apotomo::Widget
+end
 
 module RSpec::Rails
   describe WidgetExampleGroup do
@@ -18,6 +21,10 @@ module RSpec::Rails
     context "as a user would use rspec-apotomo" do
       include WidgetExampleGroup
 
+      has_widgets do |root|
+        root << widget(:dummy)
+      end
+
       it "calls render_widget in apotomo's widget'" do
         ::Apotomo::Widget.any_instance.should_receive(:render_widget)
         render_widget(:some_widget)
@@ -29,6 +36,12 @@ module RSpec::Rails
         response.should == "expected string"
       end
 
+      it "#has_widget added the widget to root" do
+        root.find_widget(:dummy).should_not be_nil
+      end
+
+      pending "can use assign() to get widget controller variables"
+      pending "can use assign() to set widget view variables"
     end
   end
 end
