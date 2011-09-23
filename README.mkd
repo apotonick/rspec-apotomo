@@ -1,0 +1,47 @@
+# RSpec Apotomo
+
+*Spec your widgets!*
+
+This gem allows you to test widgets with [Apotomo](http://apotomo.de) via RSpec.
+
+Works with Rails 3.x and RSpec 2.
+
+# Installation
+
+In your Rails `Gemfile` add this line:
+
+```
+group :test do
+  gem 'rspec-cells'
+end
+```
+
+# Usage
+
+Put specs in the `spec/widgets` directory.
+
+*TODO Add the generator and generator docs.*
+
+# Running the specs
+
+Run your examples with:
+
+```
+rake spec:widgets
+```
+
+# Contributors
+
+* [Christian Höltje](http://docwhat.org/)
+* [Jake Goulding](http://jakegoulding.com/)
+* [Vivisimo, Inc.](http://vivisimo.com/)
+
+# LICENSE
+
+Copyright © 2011 Vivisimo, Inc., Christian Höltje, Jake Goulding, Nick Sutterer
+
+Released under the MIT License  
+
+
+
+
