@@ -23,7 +23,7 @@ module RSpec::Rails
         render_widget(:some_widget)
       end
 
-      pending "sets response to the result of render_widget" do
+      it "can use response to get the result of render_widget" do
         ::Apotomo::Widget.any_instance.stub(:render_widget).and_return("expected string")
         render_widget(:some_widget)
         response.should == "expected string"
