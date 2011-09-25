@@ -9,6 +9,14 @@ module RSpec::Rails
       def render_widget(*args)
         @response = root.render_widget(*args)
       end
+      
+      # TODO: extract TestMethods module in Apotomo core.
+      def trigger(type, source, *args)
+        source = root.find_widget(source)
+        source.fire(type, *args)
+        root.page_updates
+      end
+      
 
       # TODO documentation
       def parent_controller

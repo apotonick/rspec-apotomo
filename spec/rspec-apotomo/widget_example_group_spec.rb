@@ -4,6 +4,7 @@ require 'rspec/rails/example/widget_example_group'
 
 # This class is used as a dummy widget for testing
 class DummyWidget < Apotomo::Widget
+  responds_to_event :doo
 end
 
 module RSpec::Rails
@@ -36,6 +37,12 @@ module RSpec::Rails
         ::Apotomo::Widget.any_instance.stub(:render_widget).and_return("expected string")
         render_widget(:some_widget)
         response.should == "expected string"
+      end
+      
+      it "can trigger events with #trigger and returns the page update array" do
+        ::Apotomo::Widget.any_instance.stub(:doo).and_return("unexpected string")
+        trigger(:doo, :dummy)
+        response.should == "unexpected string"
       end
 
       it "#has_widget added the widget to root" do
