@@ -12,7 +12,7 @@ In your Rails `Gemfile` add this line:
 
 ```
 group :test do
-  gem 'rspec-cells'
+  gem 'rspec-apotomo'
 end
 ```
 
@@ -21,6 +21,20 @@ end
 Put specs in the `spec/widgets` directory.
 
 *TODO Add the generator and generator docs.*
+
+An example spec could look like the following code.
+
+```
+describe CommentsWidget do
+  has_widgets do |root|
+    root << widget(:comments)
+  end
+  
+  it 'renders properly' do
+    render_widget(:comments).should == "<h1>No Comment!</h1>"
+  end
+end
+```
 
 # Running the specs
 
