@@ -57,13 +57,10 @@ module RSpec::Rails
           root << widget(:dummy)
         end
 
-        pending "triggers events" do
-          ::Apotomo::Widget.any_instance.stub(:doo).and_return("unexpected string")
-          trigger(:doo, :dummy)
-          response.should == "unexpected string"
+        it "triggers events and returns the page updates" do
+          DummyWidget.any_instance.stub(:doo).and_return("unexpected string")
+          trigger(:doo, :dummy).should == ["unexpected string"]
         end
-
-        pending "returns the page update array"
       end
 
       context "- #assign" do
