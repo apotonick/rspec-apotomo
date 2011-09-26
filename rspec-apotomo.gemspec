@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency('rails', ['~> 3.0'])
   gem.add_runtime_dependency('rspec-rails', ['~> 2.6'])
-  gem.add_runtime_dependency('apotomo', ['~> 1.1'])
+  gem.add_runtime_dependency('apotomo', ['~> 1.1.3'])
 
   gem.add_development_dependency('guard-rspec')
   gem.add_development_dependency('rb-fsevent')
