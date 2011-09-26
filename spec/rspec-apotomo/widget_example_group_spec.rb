@@ -5,6 +5,10 @@ require 'rspec/rails/example/widget_example_group'
 # This class is used as a dummy widget for testing
 class DummyWidget < Apotomo::Widget
   responds_to_event :doo
+
+  def display
+    render
+  end
 end
 
 module RSpec::Rails
@@ -24,6 +28,16 @@ module RSpec::Rails
       # A real user wouldn't use WidgetExampleGroup because
       # the rails rspec would include it automagically.
       include WidgetExampleGroup
+
+      context "light-weight integration tests" do
+        has_widgets do |root|
+          root << widget(:dummy)
+        end
+
+        it "should work end-to-end" do
+          render_widget(:dummy).should be
+        end
+      end
 
       context "- ::has_widget" do
         has_widgets do |root|
@@ -68,7 +82,9 @@ module RSpec::Rails
           root << widget(:dummy)
         end
 
-        pending "gets the widget controller variables"
+        it "gets the widget controller variables" do
+
+        end
         pending "sets the widget view variables"
       end
     end
