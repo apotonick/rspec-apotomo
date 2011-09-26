@@ -35,6 +35,10 @@ describe CommentsWidget do
   it 'renders properly' do
     render_widget(:comments).should == "<h1>No Comment!</h1>"
   end
+  
+  it 'responds to :post events' do
+    trigger(:post, :comments, :text => "I like you!").should == ["Thanks!"]
+  end
 end
 ```
 
