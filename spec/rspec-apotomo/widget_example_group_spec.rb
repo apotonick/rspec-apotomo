@@ -38,7 +38,7 @@ module RSpec::Rails
         render_widget(:some_widget)
         response.should == "expected string"
       end
-      
+
       it "can trigger events with #trigger and returns the page update array" do
         ::Apotomo::Widget.any_instance.stub(:doo).and_return("unexpected string")
         trigger(:doo, :dummy)

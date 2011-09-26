@@ -1,2 +1,2 @@
 require 'bundler'
-Bundler.setup(:test)
+Bundler.setup
