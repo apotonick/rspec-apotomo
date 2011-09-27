@@ -2,7 +2,7 @@
 
 *Spec your widgets!*
 
-[![Build Status](http://travis-ci.org/apotonick/rspec-apotomo.png)](http://travis-ci.org/apotonick/rspec-apotomo)
+[![Build Status](https://secure.travis-ci.org/apotonick/rspec-apotomo.png)](http://travis-ci.org/apotonick/rspec-apotomo)
 
 This gem allows you to test widgets with [Apotomo](http://apotomo.de) via RSpec.
 
