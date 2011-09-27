@@ -1,4 +1,4 @@
-require "rspec-apotomo/version"
+require "rspec/core"
 
 module RSpec
   module Apotomo
