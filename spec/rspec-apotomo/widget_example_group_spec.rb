@@ -1,22 +1,4 @@
 require 'spec_helper'
-require "action_controller/railtie"
-require 'rspec/rails/example/widget_example_group'
-
-Rails.application = Class.new(Rails::Application)
-# Rails.application.routes.append do |r|
-#   r.match "/render_event_response", :as => :apotomo_event_path
-# end
-
-# This class is used as a dummy widget for testing
-class DummyWidget < Apotomo::Widget
-  responds_to_event :doo
-
-  def display
-    @some_variable = :some_value
-    render
-  end
-end
-DummyWidget.append_view_path "spec/fixtures"
 
 module RSpec::Rails
   describe WidgetExampleGroup do
@@ -41,13 +23,13 @@ module RSpec::Rails
           root << widget(:dummy)
           root[:dummy].instance_eval do
             def apotomo_event_path(*args)
-              "i should be mixed in properly from @routes"
+              "I should be mixed in properly from @routes"
             end
           end
         end
 
         it "should render a view" do
-          render_widget(:dummy).should == "Hey from DummyWidget! i should be mixed in properly from @routes\n"
+          render_widget(:dummy).text.should == "Hey from DummyWidget! I should be mixed in properly from @routes\n"
         end
       end
 
@@ -71,10 +53,10 @@ module RSpec::Rails
           render_widget(:some_widget)
         end
 
-        it "can use response to get the result of render_widget" do
+        it "can use rendered to get the result of render_widget" do
           ::Apotomo::Widget.any_instance.stub(:render_widget).and_return("expected string")
           render_widget(:some_widget)
-          response.should == "expected string"
+          rendered.should have_content 'expected string'
         end
       end
 
