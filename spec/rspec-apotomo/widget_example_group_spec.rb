@@ -92,7 +92,7 @@ module RSpec::Rails
           root << widget(:dummy)
         end
 
-        pending "sets the widget view variables" do
+        it "sets the widget view variables" do
           assign(:other_variable, :other_value)
           view_assigns[:other_variable].should == :other_value
         end

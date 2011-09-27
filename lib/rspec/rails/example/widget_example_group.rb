@@ -6,6 +6,11 @@ module RSpec::Rails
   module WidgetExampleGroup
     extend ActiveSupport::Concern
 
+    include RSpec::Rails::RailsExampleGroup
+    include RSpec::Rails::ViewRendering
+    include ActionView::TestCase::Behavior
+    include RSpec::Rails::ViewAssigns
+
     include Apotomo::TestCase::TestMethods
 
     if defined?(Webrat)
@@ -45,7 +50,13 @@ module RSpec::Rails
         @routes = ::Rails.application.routes
         ActionController::Base.allow_forgery_protection = false
         @controller.request = ::ActionController::TestRequest.new
+        @controller.class_eval do
+          include Rails.application.routes.url_helpers
+        end
       end
+
+      render_views
+      subject { controller }
     end
 
     module InstanceMethods
@@ -53,7 +64,7 @@ module RSpec::Rails
         @last_invoke
       end
 
-      attr_reader :controller
+      attr_reader :controller, :routes
       include ::Apotomo::WidgetShortcuts
     end
   end
