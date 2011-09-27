@@ -1,0 +1,11 @@
+require 'spec_helper'
+
+describe <%= class_name %>Widget do
+  has_widgets do |root|
+    root << widget(:<%= class_name %>)
+  end
+  
+  it "should render :display" do
+    render_widget(:<%= class_name %>).should have_selector("h1")
+  end
+end
