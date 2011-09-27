@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'rails/all' # TODO This probably should be someplace else
+require "action_controller/railtie"
 require 'rspec/rails/example/widget_example_group'
 
 # This class is used as a dummy widget for testing
@@ -10,6 +10,13 @@ class DummyWidget < Apotomo::Widget
     render
   end
 end
+DummyWidget.append_view_path "spec/fixtures"
+
+
+Rails.application = Class.new(Rails::Application)
+#Rails.application.routes.append do |r|
+#  r.match "/render_event_response", :as => :apotomo_event_path
+#end
 
 module RSpec::Rails
   describe WidgetExampleGroup do
@@ -32,10 +39,15 @@ module RSpec::Rails
       context "light-weight integration tests" do
         has_widgets do |root|
           root << widget(:dummy)
+          root[:dummy].instance_eval do
+            def apotomo_event_path(*args)
+              "i should be mixed in properly from @routes"
+            end
+          end
         end
 
-        it "should work end-to-end" do
-          render_widget(:dummy).should be
+        it "should render a view" do
+          render_widget(:dummy).should == "Hey from DummyWidget! i should be mixed in properly from @routes\n"
         end
       end
 
