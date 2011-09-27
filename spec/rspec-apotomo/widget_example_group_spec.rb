@@ -2,21 +2,21 @@ require 'spec_helper'
 require "action_controller/railtie"
 require 'rspec/rails/example/widget_example_group'
 
+Rails.application = Class.new(Rails::Application)
+# Rails.application.routes.append do |r|
+#   r.match "/render_event_response", :as => :apotomo_event_path
+# end
+
 # This class is used as a dummy widget for testing
 class DummyWidget < Apotomo::Widget
   responds_to_event :doo
 
   def display
+    @some_variable = :some_value
     render
   end
 end
 DummyWidget.append_view_path "spec/fixtures"
-
-
-Rails.application = Class.new(Rails::Application)
-#Rails.application.routes.append do |r|
-#  r.match "/render_event_response", :as => :apotomo_event_path
-#end
 
 module RSpec::Rails
   describe WidgetExampleGroup do
@@ -89,15 +89,31 @@ module RSpec::Rails
         end
       end
 
+      context "- #view_assigns" do
+        has_widgets do |root|
+          root << widget(:dummy)
+          root[:dummy].instance_eval do
+            def apotomo_event_path(*args)
+              "/apotomo_event_path"
+            end
+          end
+        end
+
+        pending "gets the widget controller variables" do
+          render_widget(:dummy)
+          view_assigns[:some_variable].should == :some_value
+        end
+      end
+
       context "- #assign" do
         has_widgets do |root|
           root << widget(:dummy)
         end
 
-        it "gets the widget controller variables" do
-
+        pending "sets the widget view variables" do
+          assign(:other_variable, :other_value)
+          view_assigns[:other_variable].should == :other_value
         end
-        pending "sets the widget view variables"
       end
     end
   end
