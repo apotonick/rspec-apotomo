@@ -41,13 +41,10 @@ module RSpec::Rails
 
     included do
       before do
-        @parent_controller = Class.new(ActionController::Base).new
-        @parent_controller.instance_eval do
-          extend Apotomo::Rails::ControllerMethods
-          def controller_path; 'barn'; end
-        end
-
-        @parent_controller.request = ::ActionController::TestRequest.new
+        setup # defined in Apotomo::TestCase.
+        @routes = ::Rails.application.routes
+        ActionController::Base.allow_forgery_protection = false
+        @controller.request = ::ActionController::TestRequest.new
       end
     end
 
@@ -56,7 +53,7 @@ module RSpec::Rails
         @last_invoke
       end
 
-      attr_reader :parent_controller
+      attr_reader :controller
       include ::Apotomo::WidgetShortcuts
     end
   end
