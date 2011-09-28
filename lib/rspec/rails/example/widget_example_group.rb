@@ -7,8 +7,6 @@ module RSpec::Rails
     extend ActiveSupport::Concern
 
     include RSpec::Rails::RailsExampleGroup
-    include RSpec::Rails::ViewRendering
-    include ActionView::TestCase::Behavior
     include RSpec::Rails::ViewAssigns
 
     include Apotomo::TestCase::TestMethods
@@ -55,7 +53,6 @@ module RSpec::Rails
         end
       end
 
-      render_views
       subject { controller }
     end
 
@@ -63,7 +60,7 @@ module RSpec::Rails
       def rendered
         @last_invoke
       end
-
+      
       attr_reader :controller, :routes
       include ::Apotomo::WidgetShortcuts
     end
