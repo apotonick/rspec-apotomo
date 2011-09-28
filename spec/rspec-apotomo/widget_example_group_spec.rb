@@ -70,6 +70,22 @@ module RSpec::Rails
           trigger(:doo, :dummy).should == ["unexpected string"]
         end
       end
+
+      context "- #view_assigns" do
+        has_widgets do |root|
+          root << widget(:dummy)
+        end
+
+        it "gets the widget controller variables" do
+          DummyWidget.class_eval do
+            def show
+              @user = "Justin"
+            end
+          end
+          render_widget(:dummy, :show)
+          view_assigns[:user].should == "Justin"
+        end
+      end
     end
   end
 end
