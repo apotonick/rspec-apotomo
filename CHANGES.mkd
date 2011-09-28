@@ -1,5 +1,10 @@
 # Changes
 
+# 0.9.2
+
+*Accessing `view_assigns` now works.
+
+
 # 0.9.1
 
 *URL helpers now work in view.
