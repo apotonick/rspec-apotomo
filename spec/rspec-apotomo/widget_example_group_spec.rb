@@ -74,27 +74,16 @@ module RSpec::Rails
       context "- #view_assigns" do
         has_widgets do |root|
           root << widget(:dummy)
-          root[:dummy].instance_eval do
-            def apotomo_event_path(*args)
-              "/apotomo_event_path"
+        end
+
+        it "gets the widget controller variables" do
+          DummyWidget.class_eval do
+            def show
+              @user = "Justin"
             end
           end
-        end
-
-        pending "gets the widget controller variables" do
-          render_widget(:dummy)
-          view_assigns[:some_variable].should == :some_value
-        end
-      end
-
-      context "- #assign" do
-        has_widgets do |root|
-          root << widget(:dummy)
-        end
-
-        it "sets the widget view variables" do
-          assign(:other_variable, :other_value)
-          view_assigns[:other_variable].should == :other_value
+          render_widget(:dummy, :show)
+          view_assigns[:user].should == "Justin"
         end
       end
     end
