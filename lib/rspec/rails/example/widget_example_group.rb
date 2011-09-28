@@ -7,7 +7,6 @@ module RSpec::Rails
     extend ActiveSupport::Concern
 
     include RSpec::Rails::RailsExampleGroup
-    include RSpec::Rails::ViewAssigns
 
     include Apotomo::TestCase::TestMethods
 
