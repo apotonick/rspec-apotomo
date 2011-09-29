@@ -59,7 +59,16 @@ module RSpec::Rails
       def rendered
         @last_invoke
       end
-      
+
+      def method_missing(method, *args, &block)
+        # Send the route helpers to the application router.
+        if @routes && @routes.named_routes.helpers.include?(method)
+          @controller.send(method, *args, &block)
+        else
+          super
+        end
+      end
+
       attr_reader :controller, :routes
       include ::Apotomo::WidgetShortcuts
     end

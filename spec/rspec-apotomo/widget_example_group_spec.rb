@@ -31,6 +31,13 @@ module RSpec::Rails
         it "should render a view" do
           render_widget(:dummy).text.should == "Hey from DummyWidget! I should be mixed in properly from @routes\n"
         end
+
+        it "should support _path helpers from the controller" do
+          # We have to stub include so that things determine the route exists.
+          Rails.application.routes.named_routes.helpers.stub(:include?).and_return(:true)
+          @controller.should_receive(:test_path).at_least(:once)
+          test_path
+        end
       end
 
       context "- ::has_widget" do
