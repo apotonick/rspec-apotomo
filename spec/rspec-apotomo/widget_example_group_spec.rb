@@ -38,6 +38,13 @@ module RSpec::Rails
           @controller.should_receive(:test_path).at_least(:once)
           test_path
         end
+
+        it "should support polymorphic_path from the controller" do
+          # We have to stub include so that things determine the route exists.
+          Rails.application.routes.named_routes.helpers.stub(:include?).and_return(:true)
+          @controller.should_receive(:test_path).at_least(:once)
+          polymorphic_path(:test)
+        end
       end
 
       context "- ::has_widget" do

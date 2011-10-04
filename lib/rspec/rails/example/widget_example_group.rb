@@ -9,6 +9,7 @@ module RSpec::Rails
     include RSpec::Rails::RailsExampleGroup
 
     include Apotomo::TestCase::TestMethods
+    include ActionController::UrlFor
 
     if defined?(Webrat)
       include Webrat::Matchers
