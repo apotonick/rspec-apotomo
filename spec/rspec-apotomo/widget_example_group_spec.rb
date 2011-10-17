@@ -29,7 +29,7 @@ module RSpec::Rails
         end
 
         it "should render a view" do
-          render_widget(:dummy).text.should == "Hey from DummyWidget! I should be mixed in properly from @routes\n"
+          render_widget(:dummy).text.chomp.should == "Hey from DummyWidget! I should be mixed in properly from @routes"
         end
 
         it "should support _path helpers from the controller" do
