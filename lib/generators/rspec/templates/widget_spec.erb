@@ -5,7 +5,10 @@ describe <%= class_name %>Widget do
     root << widget('<%= class_name.tableize.singularize %>')
   end
   
-  it "should render :display" do
-    render_widget('<%= class_name.tableize.singularize %>').should have_selector("h1")
-  end
+  <% for action in actions %>
+    it "should render :<%= action %>" do
+      render_widget('<%= class_name.tableize.singularize %>', :<%= action %>).should have_selector("h1")
+    end
+  <% end %>
+
 end
