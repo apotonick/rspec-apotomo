@@ -1,3 +1,4 @@
+require "spec_helper"
 require "generators/rspec/widget_generator"
 
 describe Rspec::Generators::WidgetGenerator do
@@ -20,13 +21,13 @@ describe Rspec::Generators::WidgetGenerator do
     test.assert_file "spec/widgets/tweet_widget_spec.rb", /root << widget\('twitter\/tweet'\)/
     test.assert_file "spec/widgets/tweet_widget_spec.rb", /end/
   end
-  
+
   it 'creates display state' do
     test.assert_file "spec/widgets/tweet_widget_spec.rb", /it "should render :display" do/
     test.assert_file "spec/widgets/tweet_widget_spec.rb", /render_widget\('twitter\/tweet', :display\).should have_selector\("h1"\)/
     test.assert_file "spec/widgets/tweet_widget_spec.rb", /end/
   end
-  
+
   it 'creates form state' do
     test.assert_file "spec/widgets/tweet_widget_spec.rb", /it "should render :form" do/
     test.assert_file "spec/widgets/tweet_widget_spec.rb", /render_widget\('twitter\/tweet', :form\).should have_selector\("h1"\)/
