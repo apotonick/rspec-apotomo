@@ -14,22 +14,22 @@ describe Rspec::Generators::WidgetGenerator do
   end
 
   it "creates widget spec" do
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /require 'spec_helper'/
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /describe Twitter::TweetWidget do/
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /has_widgets do |root|/
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /root << widget\('twitter\/tweet'\)/
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /end/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /require 'spec_helper'/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /describe Twitter::TweetWidget do/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /has_widgets do |root|/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /root << widget\('twitter\/tweet'\)/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /end/
   end
   
   it 'creates display state' do
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /it "should render :display" do/
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /render_widget\('twitter\/tweet', :display\).should have_selector\("h1"\)/
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /end/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /it "should render :display" do/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /render_widget\('twitter\/tweet', :display\).should have_selector\("h1"\)/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /end/
   end
   
   it 'creates form state' do
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /it "should render :form" do/
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /render_widget\('twitter\/tweet', :form\).should have_selector\("h1"\)/
-    test.assert_file "spec/widgets/tweet_widget_spec.rb", /end/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /it "should render :form" do/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /render_widget\('twitter\/tweet', :form\).should have_selector\("h1"\)/
+    test.assert_file "spec/widgets/twitter/tweet_widget_spec.rb", /end/
   end
 end
