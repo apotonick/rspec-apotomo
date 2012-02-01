@@ -1,3 +1,8 @@
+# 0.9.5
+
+* No deprecations with Rails 3.2.
+* Various formatting fixes.
+
 # 0.9.4
 
 * Generated specs now contain the correct name when having nested widgets. Thanks to Felipe Iketani [felipeik].
