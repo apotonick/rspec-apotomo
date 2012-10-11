@@ -12,6 +12,13 @@ module RSpec
         RSpec.configure do |c|
           c.include RSpec::Rails::WidgetExampleGroup, :example_group => { :file_path => /spec\/widgets/ }
         end
+
+        unless defined?(Capybara) || defined?(Webrat)
+          puts "**************************************************************"
+          puts "rspec-apotomo's widget test requires either Capybara or Webrat" 
+          puts "Please add either gem to your gemset to remove this warning"
+          puts "**************************************************************"
+        end
       end
     end
   end
