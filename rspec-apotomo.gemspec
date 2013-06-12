@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('rspec-rails', ['~> 2.6'])
   gem.add_runtime_dependency('apotomo', ['>= 1.1.4'])
 
-  gem.add_development_dependency('capybara')
+  gem.add_development_dependency('capybara', ["< 2.0.0"])
+  gem.add_development_dependency('nokogiri', ["< 1.6.0"])
   gem.add_development_dependency('generator_spec')
 end
