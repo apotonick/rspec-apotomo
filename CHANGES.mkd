@@ -1,3 +1,7 @@
+# 0.9.7
+
+* Make it work with Rails 4.
+
 # 0.9.6
 
 * Namespacing now works properly.
