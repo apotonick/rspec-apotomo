@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Rspec::Apotomo::VERSION
 
-  gem.add_runtime_dependency('rails', ['~> 3.0'])
+  gem.add_runtime_dependency('rails', ['>= 3.0'])
   gem.add_runtime_dependency('rspec-rails', ['~> 2.6'])
   gem.add_runtime_dependency('apotomo', ['>= 1.1.4'])
 
