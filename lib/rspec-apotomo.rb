@@ -1,4 +1,5 @@
 require "rspec/core"
+require "rails/railtie"
 
 module RSpec
   module Apotomo
@@ -10,12 +11,13 @@ module RSpec
       initializer 'apotomo.rspec' do
         require 'rspec/rails/example/widget_example_group'
         RSpec.configure do |c|
-          c.include RSpec::Rails::WidgetExampleGroup, :example_group => { :file_path => /spec\/widgets/ }
+          c.include RSpec::Rails::WidgetExampleGroup, :file_path => /spec\/widgets/
+          c.include RSpec::Rails::WidgetExampleGroup, :type => :widget
         end
 
         unless defined?(Capybara) || defined?(Webrat)
           puts "**************************************************************"
-          puts "rspec-apotomo's widget test requires either Capybara or Webrat" 
+          puts "rspec-apotomo's widget test requires either Capybara or Webrat"
           puts "Please add either gem to your gemset to remove this warning"
           puts "**************************************************************"
         end

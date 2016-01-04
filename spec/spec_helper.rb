@@ -1,7 +1,9 @@
-require 'bundler'
-Bundler.setup
+require 'bundler/setup'
 
 require "action_controller/railtie"
+require "action_view/railtie"
+require "rspec-apotomo"
+require "rspec/rails"
 
 Rails.application = Class.new(Rails::Application)
 # Rails.application.routes.append do |r|
@@ -13,6 +15,11 @@ Rails.application = Class.new(Rails::Application)
 module Rails
   def root
     Pathname.new(__FILE__).dirname.dirname.dirname
+  end
+end
+
+module RSpecApotomo
+  class Application < ::Rails::Application
   end
 end
 

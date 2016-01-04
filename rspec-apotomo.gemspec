@@ -20,5 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('apotomo', ['>= 1.1.4'])
 
   gem.add_development_dependency('capybara')
+  gem.add_development_dependency('rails-dom-testing')
   gem.add_development_dependency('generator_spec')
 end
