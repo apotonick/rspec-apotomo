@@ -16,9 +16,10 @@ Gem::Specification.new do |gem|
   gem.version       = Rspec::Apotomo::VERSION
 
   gem.add_runtime_dependency('rails', ['>= 3.0'])
-  gem.add_runtime_dependency('rspec-rails', ['~> 2.6'])
+  gem.add_runtime_dependency('rspec-rails', ['>= 2.6'])
   gem.add_runtime_dependency('apotomo', ['>= 1.1.4'])
 
   gem.add_development_dependency('capybara')
+  gem.add_development_dependency('rails-dom-testing')
   gem.add_development_dependency('generator_spec')
 end
